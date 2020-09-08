@@ -1,5 +1,7 @@
 package theji.algorithmproject.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import theji.algorithmproject.Member.Member;
 import theji.algorithmproject.repository.MemberRepository;
 import theji.algorithmproject.repository.MemoryMemberRepository;
@@ -7,10 +9,12 @@ import theji.algorithmproject.repository.MemoryMemberRepository;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
