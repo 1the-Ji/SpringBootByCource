@@ -3,15 +3,14 @@ package theji.algorithmproject.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import theji.algorithmproject.Member.Member;
 import theji.algorithmproject.repository.MemberRepository;
-
-import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional
+@Commit
 class MemberServiceIntegrationTest {
     @Autowired
     MemberService memberService;
