@@ -1,15 +1,14 @@
 package theji.algorithmproject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import theji.algorithmproject.Member.Member;
 import theji.algorithmproject.repository.MemberRepository;
-import theji.algorithmproject.repository.MemoryMemberRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -28,20 +27,24 @@ public class MemberService {
         return member.getId();
 
     }
+    /**
+     * 전체 회원 조회
+     */
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
+    }
+
+    /**
+     * 특정 회원 조회
+     */
+    public Optional<Member> findOne(Long memberId) {
+        return memberRepository.findById(memberId);
+    }
 
     private void validateionDuplicateMember(Member member) {
         memberRepository.findByName(member.getName()).ifPresent(m -> {
             throw new IllegalStateException("존재회원입니다.");
         });
-    }
-    /**
-     *전체 회원 조회
-     */
-    public List<Member> findMembers() {
-        return memberRepository.findAll();
-    }
-    public Optional<Member> findOne(Long memberId) {
-        return memberRepository.findById(memberId);
     }
 }
 
